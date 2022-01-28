@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .tableSectionHeader {
+        background-color: #D6EEEE;
+    }
+
+    .tableTotalCell {
+        text-align: right;
+    }
+</style>
+<body>
+    <table style="width:100%">
+        <tr class="tableSectionHeader">
+            <th colspan="3">Order</th>
+        </tr>
+        <tr>
+            <td><strong>Number: </strong>{{Number}}</td>
+            <td colspan="2"><strong>Date: </strong>{{Date}}</td>
+        </tr>
+        <tr class="tableSectionHeader">
+            <th colspan="3">Customer</th>
+        </tr>
+        <tr>
+            <td><strong>Name: </strong>{{Customer.Name}}</td>
+            <td><strong>E-mail: </strong>{{Customer.Email}}</td>
+            <td><strong>Phone: </strong>{{Customer.Phone}}</td>
+        </tr>
+        <tr>
+            <th colspan="3">&nbsp;</th>
+        </tr>
+        <tr class="tableSectionHeader">
+            <th colspan="3">Items</th>
+        </tr>
+        <tr>
+            <th colspan="2">Description</th>
+            <th>Value</th>
+        </tr>
+        {{Items}}
+        <tr>
+            <td class="tableTotalCell" colspan="3"><strong>Total: R$ </strong>{{Total}}</td>
+        </tr>
+    </table>
+</body>
+</html>

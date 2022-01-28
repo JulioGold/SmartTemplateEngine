@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTemplateEngine", "SmartTemplateEngine\SmartTemplateEngine.csproj", "{E7A45705-DEA3-4F3E-9CCE-FE917E3A16FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run", "Run\Run.csproj", "{ED9DD973-742C-4CDD-B5C9-F83C378B7A86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7A45705-DEA3-4F3E-9CCE-FE917E3A16FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7A45705-DEA3-4F3E-9CCE-FE917E3A16FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7A45705-DEA3-4F3E-9CCE-FE917E3A16FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7A45705-DEA3-4F3E-9CCE-FE917E3A16FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9DD973-742C-4CDD-B5C9-F83C378B7A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9DD973-742C-4CDD-B5C9-F83C378B7A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9DD973-742C-4CDD-B5C9-F83C378B7A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9DD973-742C-4CDD-B5C9-F83C378B7A86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF2129BD-A8A8-42DC-9F68-63F0CAFD5D3C}
+	EndGlobalSection
+EndGlobal
