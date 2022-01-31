@@ -19,50 +19,45 @@ namespace SmartTemplateEngine
 
             return Regex.Replace(template, @"\{\{([\w\.]+)\}\}", delegate (Match match)
             {
-                string group = match.Groups[1].ToString();
+                string tagFromTemplate = match.Groups[1].ToString();
 
-                var value = group
+                var resultValue = tagFromTemplate
                     .Split('.')
-                    .Aggregate((object)contextObjJson, (a, b) =>
-                    {
-                        var jObj = (JObject.Parse(a.ToString())) ?? a as JToken;
-
-                        if (jObj != null)
+                    .Aggregate(
+                        (object)contextObjJson,
+                        (a, tagName) =>
                         {
-                            if (jObj[b].HasValues && jObj[b].Type == JTokenType.Array)
+                            if (((JObject.Parse(a.ToString())) ?? a as JToken) is var jObj && jObj != null)
                             {
-                                var localTemplate = tagsAndTemplates[$"{{{{{b}}}}}"];
-                                var targetProperty = contextObj.GetType().GetProperty(b);
-                                var sourcePropertyValue = targetProperty.GetValue(contextObj, null) as IEnumerable<object>;
-                                var sb = new StringBuilder();
-
-                                sourcePropertyValue.ToList()
-                                .ForEach(fff =>
+                                if (jObj[tagName].HasValues && jObj[tagName].Type == JTokenType.Array)
                                 {
-                                    sb.Append(SmartTemplateEngineBuilder.ProcessTemplate(localTemplate, fff, tagsAndTemplates));
-                                });
+                                    var localTemplate = tagsAndTemplates[$"{{{{{tagName}}}}}"];
+                                    var sb = new StringBuilder();
 
-                                var jValor = new JValue(sb.ToString()) as JToken;
+                                    (contextObj.GetType().GetProperty(tagName).GetValue(contextObj, null) as IEnumerable<object>)
+                                        .ToList()
+                                        .ForEach(fff =>
+                                        {
+                                            sb.Append(SmartTemplateEngineBuilder.ProcessTemplate(localTemplate, fff, tagsAndTemplates));
+                                        });
 
-                                return jValor.ToString();
+                                    var propertyListParsedTemplate = (new JValue(sb.ToString()) as JToken).ToString();
 
-                                //var valor = string.Join(", ", jObj[b].ToList().Select(s => s.ToString()));
-                                //var jValor = new JValue(valor) as JToken;
+                                    return propertyListParsedTemplate;
+                                }
+                                else
+                                {
+                                    var propertyValue = jObj[tagName].ToString();
 
-                                //return jValor.ToString();
+                                    return propertyValue;
+                                }
                             }
-                            else
-                            {
-                                var result = jObj[b];
 
-                                return result.ToString();
-                            }
+                            return string.Empty;
                         }
+                    );
 
-                        return null;
-                    });
-
-                return value != null ? (value.ToString()) : string.Empty;
+                return resultValue.ToString() ?? string.Empty;
             });
         }
     }

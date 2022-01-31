@@ -112,10 +112,9 @@ namespace Run
             {
                 {"{{Items}}", orderTemplateItems }
             };
-
-            string result = SmartTemplateEngineBuilder.ProcessTemplate(orderTemplate, orders.FirstOrDefault(), tagAndTemplate);
-
-            Console.WriteLine("");
+            List<string> ordersResult = orders
+                .Select(order => SmartTemplateEngineBuilder.ProcessTemplate(orderTemplate, order, tagAndTemplate))
+                .ToList();
         }
     }
 
